@@ -2,6 +2,9 @@ version: '3'
 services:
   movie-service:
     build: .
+    image: movie-service:latest
     ports:
       - "4200:4200"
     restart: always
+    env_file:
+      - .env

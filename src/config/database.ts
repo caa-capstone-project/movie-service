@@ -23,6 +23,15 @@ const query = async (params: AWS.DynamoDB.DocumentClient.QueryInput) => {
   }
 };
 
+const batchQuery = async (params: AWS.DynamoDB.DocumentClient.BatchGetItemInput) => {
+  try {
+    const data = await docClient.batchGet(params).promise();
+    return data.Responses;
+  } catch (err: any) {
+    throw new Error('DynamoDB batch query failed: ' + err.message);
+  }
+}
+
 // Function to query DynamoDB
 const scan = async (params: AWS.DynamoDB.DocumentClient.QueryInput) => {
   try {
@@ -43,4 +52,4 @@ const put = async (params: AWS.DynamoDB.DocumentClient.PutItemInput) => {
   }
 };
 
-export { query, put, scan };
+export { query, batchQuery, put, scan };

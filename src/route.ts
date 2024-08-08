@@ -3,6 +3,6 @@ import { listMovie } from './controller/movie-controller';
 
 const router = Router();
 
-router.get('/listMovie', listMovie);
+router.get('/listMovie/:userId', listMovie);
 
 export default router;

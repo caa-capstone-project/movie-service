@@ -4,7 +4,8 @@ import ratingApi from '../api/rating-api';
 import movieRecommendApi from '../api/movie-recommend-api';
 import { AttributeMap } from 'aws-sdk/clients/dynamodb';
 
-const listTopRatedMovies = async (userId: number): Promise<any> => {
+const listTopRatedMovies = async (userId: string): Promise<any> => {
+    console.log('User ID: ', userId);
     try {
         const result = [];
         const movieList = await movieDb.listTopRatedMovies();
@@ -29,7 +30,7 @@ const listTopRatedMovies = async (userId: number): Promise<any> => {
     }
 }
 
-const listMovie = async (userId: number): Promise<any> => {
+const listMovie = async (userId: string): Promise<any> => {
     try {
         const ratings = await ratingApi.getMovieRatings(userId) || { ratings: []};
         // convert to number

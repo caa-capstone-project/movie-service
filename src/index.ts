@@ -4,7 +4,8 @@ import dotenv from "dotenv";
 import router from "./route";
 import cors from 'cors';
 
-dotenv.config();
+const envFile = process.env.NODE_ENV === 'production' ? '.env.production' : '.env.local';
+dotenv.config({ path: envFile });
 
 const app: Express = express();
 app.use(cors());

@@ -1,8 +1,9 @@
 import axios from 'axios';
 
-async function getMovieRatings(userId: number): Promise<any> {
+async function getMovieRatings(userId: string): Promise<any> {
   try {
-    const response = await axios.get(`http://127.0.0.1:4203/rating/${userId}`);
+    const url = process.env.RATING_SERVICE_URL + userId
+    const response = await axios.get(url);
     return response.data;
   } catch (error: any) {
     console.error('Error fetching movie ratings:', error.message);
